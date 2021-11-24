@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "pm2-runtime src/index.js",
+    "migrate": "sequelize db:migrate", 
+    "exec": "yarn run migrate && yarn start"
   },
   "repository": {
     "type": "git",
@@ -19,6 +22,8 @@
   "homepage": "https://github.com/mromiario/against-comment#readme",
   "dependencies": {
     "dotenv": "^10.0.0",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "pg": "^8.7.1",
+    "sequelize": "^6.12.0-alpha.1"
   }
 }
