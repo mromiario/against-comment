@@ -28,20 +28,20 @@ module.exports = {
 		let existingOrganization = await organization.findOne({
 			where: {
 				name: organization_name
-      },
-      attributes: ['id']
+      		},
+      		attributes: ['id']
 		}) 
 
 		if (!existingOrganization) {
-      existingOrganization = await organization.create({
-        name: organization_name
-      })
-    }
+      		existingOrganization = await organization.create({
+        		name: organization_name
+      		})
+   		}
 
-    await comment.create({
-      comment: body.comment,
-      organization_id: existingOrganization.id
-    })
+		await comment.create({
+			comment: body.comment,
+			organization_id: existingOrganization.id
+		})
 
 		return payload
 	},
@@ -53,8 +53,8 @@ module.exports = {
 		let existingOrganization = await organization.findOne({
 			where: {
 				name: organization_name
-      },
-      attributes: ['id']
+      		},
+      		attributes: ['id']
 		}) 
 
 		if (!existingOrganization) {
@@ -62,13 +62,13 @@ module.exports = {
 			err.statusCode = 404
 			err.message = 'Organization is not found'
 			throw err
-    }
+    	}
 
-    return await comment.findAll({
+		return await comment.findAll({
 			where: {
 				organization_id: existingOrganization.id
 			}
-    })
+		})
 	},
 	deleteComments: async (payload) => {
 		const {
@@ -78,8 +78,8 @@ module.exports = {
 		let existingOrganization = await organization.findOne({
 			where: {
 				name: organization_name
-      },
-      attributes: ['id']
+      		},
+      		attributes: ['id']
 		}) 
 
 		if (!existingOrganization) {
@@ -87,12 +87,12 @@ module.exports = {
 			err.statusCode = 404
 			err.message = 'Organization is not found'
 			throw err
-    }
+    	}
 
-    await comment.destroy({
+    	await comment.destroy({
 			where: {
 				organization_id: existingOrganization.id
 			}
-    })
-  }
+   		 })
+  	}
 }

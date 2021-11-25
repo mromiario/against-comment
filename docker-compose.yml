@@ -10,6 +10,7 @@ services:
       - ".env"
 
   api:
+    container_name: "api"
     build: "./"
     ports:
       - "${EXPRESS_PORT}:3000"
