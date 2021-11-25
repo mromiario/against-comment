@@ -1,7 +1,7 @@
 const fs = require('fs')
 const path = require('path')
 const Sequelize = require('sequelize')
-const config = require('../config/config.js')[process.env.NODE_ENV]
+const config = require('../../data/config/config')[process.env.NODE_ENV]
 
 const basename = path.basename(__filename)
 const db = {}

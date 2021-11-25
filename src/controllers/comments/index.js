@@ -69,5 +69,30 @@ module.exports = {
 				organization_id: existingOrganization.id
 			}
     })
+	},
+	deleteComments: async (payload) => {
+		const {
+			organization_name
+		} = payload
+
+		let existingOrganization = await organization.findOne({
+			where: {
+				name: organization_name
+      },
+      attributes: ['id']
+		}) 
+
+		if (!existingOrganization) {
+			const err = new Error()
+			err.statusCode = 404
+			err.message = 'Organization is not found'
+			throw err
+    }
+
+    await comment.destroy({
+			where: {
+				organization_id: existingOrganization.id
+			}
+    })
   }
 }
